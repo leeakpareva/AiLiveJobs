@@ -23,10 +23,5 @@
       "src": "/(.*\\.(png|csv|js|css))",
       "dest": "/api/index.py"
     }
-  ],
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.9"
-    }
-  }
+  ]
 }
