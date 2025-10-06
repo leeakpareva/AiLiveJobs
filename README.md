@@ -49,10 +49,16 @@ A comprehensive UK AI job market intelligence platform with real-time job listin
 
 ## 🚀 Quick Start
 
+### Method 1: Run with Local Server (Recommended)
 1. **Clone the repository**
 2. **Install dependencies**: pandas, matplotlib, seaborn, requests
-3. **Launch NAVADA**: python enhanced_navada_launcher.py
-4. **Access features via burger menu**: Job listings and AI assistant
+3. **Start the server**: `python start_server.py` or double-click `start_navada.bat`
+4. **Access dashboard**: Opens automatically at http://localhost:8888/navada_dashboard.html
+5. **Access features via burger menu**: Job listings and AI assistant
+
+### Method 2: Direct Launch
+1. **Run launcher**: `python enhanced_navada_launcher.py`
+2. **Note**: Job listings may not load due to browser CORS restrictions
 
 ## 📊 16 Total Charts
 - 8 Standard Analytics
