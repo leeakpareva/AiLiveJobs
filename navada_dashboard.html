@@ -997,6 +997,182 @@
             transform: none;
         }
 
+        /* About Section Styling */
+        .about-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(100, 181, 246, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 15px;
+        }
+
+        .about-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #64b5f6 0%, #81c784 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(100, 181, 246, 0.3);
+        }
+
+        .about-info h3 {
+            margin: 0;
+            color: #64b5f6;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .about-info p {
+            margin: 5px 0 0 0;
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .about-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: rgba(30, 30, 60, 0.3);
+        }
+
+        .about-section {
+            margin-bottom: 25px;
+            background: rgba(60, 60, 90, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-section h4 {
+            color: #64b5f6;
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-section p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+
+        .feature-list-about {
+            color: #e0e0e0;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .feature-list-about li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .feature-item-about {
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .creator-section {
+            background: linear-gradient(135deg, rgba(100, 181, 246, 0.15) 0%, rgba(129, 199, 132, 0.15) 100%);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .creator-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .creator-details strong {
+            color: #64b5f6;
+            font-size: 1.1rem;
+        }
+
+        .creator-title {
+            color: #81c784;
+            font-weight: 600;
+        }
+
+        .creator-experience {
+            color: #b0b0b0;
+            font-style: italic;
+        }
+
+        .creator-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .creator-link {
+            background: rgba(100, 181, 246, 0.2);
+            color: #64b5f6;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .creator-link:hover {
+            background: rgba(100, 181, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .creator-bio {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
         /* Collapsible Chat Panel */
         .chat-panel {
             position: fixed;
@@ -1400,6 +1576,9 @@
                 <span style="font-size: 0.8rem; color: #b0b0b0; margin-left: 10px;">AI Jobs Intelligence</span>
             </div>
             <div class="header-controls">
+                <button onclick="showAboutModal()" style="background: rgba(100, 181, 246, 0.2); border: 1px solid rgba(100, 181, 246, 0.5); color: #64b5f6; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; margin-right: 15px;">
+                    <i class="fas fa-info-circle"></i> About
+                </button>
                 <div class="live-indicator">🔴 LIVE</div>
                 <div class="burger-menu" onclick="toggleSidePanel()">
                     <div class="burger-line"></div>
@@ -1575,6 +1754,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -1713,6 +1893,87 @@
 
             </div>
         </main>
+
+        <!-- About Modal -->
+        <div class="chart-modal" id="aboutModal" style="z-index: 10001;">
+            <div class="chart-modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto; padding: 0;">
+                <button class="chart-close" id="aboutClose" style="position: absolute; top: 15px; right: 15px; z-index: 10002;">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="about-container" style="padding: 30px;">
+                    <div class="about-header" style="display: flex; align-items: center; padding: 20px; background: rgba(100, 181, 246, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin: -30px -30px 20px -30px; border-radius: 10px 10px 0 0;">
+                        <div class="about-avatar" style="width: 60px; height: 60px; background: linear-gradient(135deg, #64b5f6, #81c784); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                            <i class="fas fa-rocket" style="font-size: 24px; color: white;"></i>
+                        </div>
+                        <div class="about-info">
+                            <h3 style="margin: 0; font-size: 1.8rem; color: #64b5f6;">NAVADA AI Jobs Intelligence</h3>
+                            <p style="margin: 5px 0 0 0; color: #b0b0b0; font-size: 1.1rem;">Real-time UK AI job market insights platform</p>
+                        </div>
+                    </div>
+
+                    <div class="about-content">
+                        <div class="about-section" style="margin-bottom: 25px;">
+                            <h4 style="color: #64b5f6; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-lightbulb"></i> What is NAVADA?
+                            </h4>
+                            <p style="color: #e0e0e0; line-height: 1.6; font-size: 1rem;">NAVADA is a comprehensive AI-powered job market intelligence platform that provides real-time insights into the UK's artificial intelligence job sector. The platform combines live job data, advanced analytics, sentiment analysis, and AI-driven career guidance to empower job seekers, employers, and market researchers.</p>
+                        </div>
+
+                        <div class="about-section" style="margin-bottom: 25px;">
+                            <h4 style="color: #64b5f6; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-cogs"></i> How it Works
+                            </h4>
+                            <p style="color: #e0e0e0; line-height: 1.6; font-size: 1rem;">The platform leverages the Adzuna Jobs API to fetch real-time job listings, processes them through advanced analytics engines, and presents insights through 16 interactive charts. Our AI assistant Leslie provides personalized career guidance using OpenAI's GPT technology, while sentiment analysis algorithms evaluate company culture and job market trends.</p>
+                        </div>
+
+                        <div class="about-section" style="margin-bottom: 25px;">
+                            <h4 style="color: #64b5f6; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-target"></i> Why NAVADA?
+                            </h4>
+                            <p style="color: #e0e0e0; line-height: 1.6; font-size: 1rem; margin-bottom: 15px;">The AI job market is rapidly evolving, and professionals need data-driven insights to make informed career decisions. NAVADA bridges this gap by providing:</p>
+                            <ul style="color: #e0e0e0; line-height: 1.6; font-size: 1rem; margin-left: 20px;">
+                                <li style="margin-bottom: 8px;">Real-time salary benchmarking across 185+ live positions</li>
+                                <li style="margin-bottom: 8px;">Company sentiment analysis for cultural fit assessment</li>
+                                <li style="margin-bottom: 8px;">Skills demand tracking for career development planning</li>
+                                <li style="margin-bottom: 8px;">Geographic distribution insights for relocation decisions</li>
+                                <li style="margin-bottom: 8px;">AI-powered career guidance and market intelligence</li>
+                            </ul>
+                        </div>
+
+                        <div class="about-section" style="margin-bottom: 25px;">
+                            <h4 style="color: #64b5f6; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-user-tie"></i> About the Creator
+                            </h4>
+                            <p style="color: #e0e0e0; line-height: 1.6; font-size: 1rem;">Designed and developed by <strong>Lee Akpareva MBA, MA</strong>, a business intelligence professional with expertise in data analytics, AI implementation, and strategic business solutions. Lee combines academic excellence with practical industry experience to create innovative platforms that solve real-world business challenges.</p>
+                        </div>
+
+                        <div class="about-section">
+                            <h4 style="color: #64b5f6; font-size: 1.3rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-chart-line"></i> Technical Features
+                            </h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                                <div style="background: rgba(100, 181, 246, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(100, 181, 246, 0.3);">
+                                    <div style="color: #64b5f6; font-weight: bold; margin-bottom: 5px;">16 Analytics Charts</div>
+                                    <div style="color: #b0b0b0; font-size: 0.9rem;">Interactive data visualizations</div>
+                                </div>
+                                <div style="background: rgba(129, 199, 132, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(129, 199, 132, 0.3);">
+                                    <div style="color: #81c784; font-weight: bold; margin-bottom: 5px;">Real-time API</div>
+                                    <div style="color: #b0b0b0; font-size: 0.9rem;">Live Adzuna job data</div>
+                                </div>
+                                <div style="background: rgba(255, 183, 77, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 183, 77, 0.3);">
+                                    <div style="color: #ffb74d; font-weight: bold; margin-bottom: 5px;">AI Assistant</div>
+                                    <div style="color: #b0b0b0; font-size: 0.9rem;">OpenAI GPT integration</div>
+                                </div>
+                                <div style="background: rgba(240, 98, 146, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(240, 98, 146, 0.3);">
+                                    <div style="color: #f06292; font-weight: bold; margin-bottom: 5px;">Sentiment Analysis</div>
+                                    <div style="color: #b0b0b0; font-size: 0.9rem;">Company culture insights</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Chart Zoom Modal -->
         <div class="chart-modal" id="chartModal">
@@ -2108,56 +2369,112 @@
         }
 
         function parseCSV(csvText) {
+            console.log('Starting robust CSV parsing...');
             const lines = csvText.split('\n');
             const jobs = [];
 
-            if (lines.length < 2) return jobs;
+            if (lines.length < 2) {
+                console.warn('CSV file has insufficient data');
+                return jobs;
+            }
 
-            // Parse headers
-            const headers = parseCSVLine(lines[0]);
+            // Expected headers in order
+            const headers = ['job_id', 'title', 'company', 'location', 'category', 'experience_level', 'work_type', 'salary_min', 'salary_max', 'salary_avg', 'required_skills', 'description', 'posted_date', 'url', 'source', 'fetched_at'];
 
-            // Parse data lines
+            let successCount = 0;
+            let errorCount = 0;
+
+            // Parse each data line starting from line 2 (skip header)
             for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim()) {
-                    const values = parseCSVLine(lines[i]);
-                    const job = {};
+                const line = lines[i].trim();
+                if (!line) continue;
 
-                    headers.forEach((header, index) => {
-                        const value = values[index] || '';
-                        job[header.trim()] = value.trim();
-                    });
+                try {
+                    const fields = parseCSVLineRobust(line);
 
-                    // Only include jobs with essential data
-                    if (job.title && job.company && job.title.length > 0) {
-                        jobs.push(job);
+                    if (fields.length >= 4) {
+                        const job = {};
+
+                        // Map fields to headers
+                        headers.forEach((header, index) => {
+                            let value = (fields[index] || '').toString().trim();
+
+                            // Clean quotes from beginning and end
+                            if (value.startsWith('"') && value.endsWith('"') && value.length > 1) {
+                                value = value.slice(1, -1);
+                            }
+
+                            // Handle escaped quotes within the value
+                            value = value.replace(/""/g, '"');
+
+                            job[header] = value;
+                        });
+
+                        // Validate essential fields and convert salary to numbers
+                        if (job.title && job.company && job.location && job.title !== 'title') {
+                            // Clean and convert salary fields
+                            ['salary_min', 'salary_max', 'salary_avg'].forEach(salaryField => {
+                                if (job[salaryField]) {
+                                    const salaryValue = parseFloat(job[salaryField]);
+                                    job[salaryField] = isNaN(salaryValue) ? 0 : salaryValue;
+                                }
+                            });
+
+                            jobs.push(job);
+                            successCount++;
+                        }
                     }
+                } catch (error) {
+                    errorCount++;
+                    console.warn(`Error parsing line ${i}:`, error.message);
                 }
             }
 
-            console.log(`Parsed ${jobs.length} jobs from CSV`);
+            console.log(`CSV parsing complete: ${successCount} jobs parsed successfully, ${errorCount} errors`);
             return jobs;
         }
 
-        function parseCSVLine(line) {
+        function parseCSVLineRobust(line) {
             const result = [];
             let current = '';
             let inQuotes = false;
+            let i = 0;
 
-            for (let i = 0; i < line.length; i++) {
+            while (i < line.length) {
                 const char = line[i];
+                const nextChar = line[i + 1];
 
                 if (char === '"') {
-                    inQuotes = !inQuotes;
+                    if (inQuotes && nextChar === '"') {
+                        // Handle escaped quotes (double quotes)
+                        current += '"';
+                        i += 2;
+                        continue;
+                    } else {
+                        // Toggle quote state
+                        inQuotes = !inQuotes;
+                    }
                 } else if (char === ',' && !inQuotes) {
-                    result.push(current);
+                    // Found field separator, push current field
+                    result.push(current.trim());
                     current = '';
+                    i++;
+                    continue;
                 } else {
+                    // Regular character, add to current field
                     current += char;
                 }
+                i++;
             }
 
-            result.push(current);
+            // Push the last field
+            result.push(current.trim());
             return result;
+        }
+
+        // Legacy function for compatibility
+        function splitCSVLine(line) {
+            return parseCSVLineRobust(line);
         }
 
         function populateFilters() {
@@ -2299,15 +2616,23 @@
         }
 
         function createJobCard(job) {
+            // Handle salary display
             const salary = job.salary_avg && parseFloat(job.salary_avg) > 0
                 ? `£${parseFloat(job.salary_avg).toLocaleString()}`
                 : 'Salary not specified';
 
+            // Handle posted date
             const postedDate = job.posted_date ? new Date(job.posted_date).toLocaleDateString() : 'Date not available';
 
-            const description = job.description.length > 200
-                ? job.description.substring(0, 200) + '...'
-                : job.description;
+            // Handle description
+            const description = (job.description && job.description.length > 150)
+                ? job.description.substring(0, 150) + '...'
+                : (job.description || 'No description available');
+
+            // Handle work type and experience level
+            const workType = job.work_type || 'Not specified';
+            const experienceLevel = job.experience_level || 'Not specified';
+            const category = job.category || 'General';
 
             return `
                 <div class="job-card">
@@ -2453,6 +2778,7 @@
             // Modal close functionality
             document.getElementById('chartClose').addEventListener('click', hideChartModal);
             document.getElementById('jobDetailClose').addEventListener('click', hideJobDetailModal);
+            document.getElementById('aboutClose').addEventListener('click', hideAboutModal);
 
             // Close modals when clicking outside
             document.getElementById('chartModal').addEventListener('click', function(e) {
@@ -2463,11 +2789,16 @@
                 if (e.target === this) hideJobDetailModal();
             });
 
+            document.getElementById('aboutModal').addEventListener('click', function(e) {
+                if (e.target === this) hideAboutModal();
+            });
+
             // ESC key to close modals
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     hideChartModal();
                     hideJobDetailModal();
+                    hideAboutModal();
                 }
             });
         }
@@ -2488,6 +2819,29 @@
             document.getElementById('jobDetailModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
+
+        function showAboutModal() {
+            document.getElementById('aboutModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideAboutModal() {
+            document.getElementById('aboutModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
     </script>
+
+    <!-- Footer -->
+    <footer style="background: rgba(30, 30, 60, 0.95); padding: 20px 0; text-align: center; color: #e0e0e0; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 50px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <p style="margin: 0; font-size: 14px; opacity: 0.8;">
+                Designed & Developed by <strong>Lee Akpareva MBA, MA</strong>
+            </p>
+            <p style="margin: 5px 0 0 0; font-size: 12px; opacity: 0.6;">
+                NAVADA - AI Jobs Intelligence Platform © 2025
+            </p>
+        </div>
+    </footer>
+
 </body>
 </html>
