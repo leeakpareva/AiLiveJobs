@@ -1598,11 +1598,11 @@
             </div>
 
             <div class="side-panel-nav">
-                <button class="nav-item active" onclick="showPanel('jobs')">
+                <button class="nav-item active" onclick="showPanel('jobs', event)">
                     <i class="fas fa-briefcase"></i>
                     <span>Live UK AI Jobs</span>
                 </button>
-                <button class="nav-item" onclick="showPanel('chat')">
+                <button class="nav-item" onclick="showPanel('chat', event)">
                     <i class="fas fa-robot"></i>
                     <span>AI Assistant</span>
                 </button>
@@ -2039,12 +2039,19 @@
         }
 
         // Show specific panel section
-        function showPanel(panelName) {
+        function showPanel(panelName, evt) {
             // Update navigation
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
-            event.target.closest('.nav-item').classList.add('active');
+
+            // Handle the active state properly
+            if (evt && evt.target) {
+                evt.target.closest('.nav-item').classList.add('active');
+            } else {
+                // Fallback if no event passed
+                document.querySelector(`.nav-item[onclick*="${panelName}"]`).classList.add('active');
+            }
 
             // Update panel content
             document.querySelectorAll('.panel-section').forEach(section => {
@@ -2054,8 +2061,8 @@
 
             currentPanel = panelName;
 
-            // If switching to jobs panel, load jobs
-            if (panelName === 'jobs') {
+            // If switching to jobs panel and jobs not loaded yet, load them
+            if (panelName === 'jobs' && allJobs.length === 0) {
                 loadJobs();
             }
         }
@@ -2286,9 +2293,8 @@
         async function initializeJobListings() {
             try {
                 await loadJobs();
-                populateFilters();
-                setupEventListeners();
-                displayJobs();
+                // loadJobs already calls populateFilters() and sets up listeners
+                console.log('Job listings initialized successfully');
             } catch (error) {
                 console.error('Failed to initialize job listings:', error);
                 document.getElementById('jobListings').innerHTML =
@@ -2453,13 +2459,13 @@
                     } else {
                         // Toggle quote state
                         inQuotes = !inQuotes;
+                        i++;
+                        continue;
                     }
                 } else if (char === ',' && !inQuotes) {
                     // Found field separator, push current field
                     result.push(current.trim());
                     current = '';
-                    i++;
-                    continue;
                 } else {
                     // Regular character, add to current field
                     current += char;
@@ -2469,6 +2475,12 @@
 
             // Push the last field
             result.push(current.trim());
+
+            // Ensure we have at least 16 fields (pad with empty strings if needed)
+            while (result.length < 16) {
+                result.push('');
+            }
+
             return result;
         }
 
@@ -2478,39 +2490,49 @@
         }
 
         function populateFilters() {
+            console.log('Starting to populate filters with', allJobs.length, 'jobs');
+
             // Extract unique values and filter out empty ones
             const companies = [...new Set(allJobs.map(job => job.company))]
-                .filter(company => company && company.trim().length > 0)
+                .filter(company => company && company.trim().length > 0 && company !== 'company')
                 .sort();
 
             const locations = [...new Set(allJobs.map(job => job.location))]
-                .filter(location => location && location.trim().length > 0)
+                .filter(location => location && location.trim().length > 0 && location !== 'location')
                 .sort();
 
             const experiences = [...new Set(allJobs.map(job => job.experience_level))]
-                .filter(exp => exp && exp.trim().length > 0)
+                .filter(exp => exp && exp.trim().length > 0 && exp !== 'experience_level')
                 .sort();
 
             const categories = [...new Set(allJobs.map(job => job.category))]
-                .filter(cat => cat && cat.trim().length > 0)
+                .filter(cat => cat && cat.trim().length > 0 && cat !== 'category')
                 .sort();
 
             const workTypes = [...new Set(allJobs.map(job => job.work_type))]
-                .filter(type => type && type.trim().length > 0)
+                .filter(type => type && type.trim().length > 0 && type !== 'work_type')
                 .sort();
 
-            // Populate all dropdowns
-            populateSelect('companyFilter', companies);
-            populateSelect('locationFilter', locations);
-            populateSelect('experienceFilter', experiences);
+            // Log what we extracted
+            console.log('Extracted filter values:', {
+                companies: companies.slice(0, 5),
+                locations: locations.slice(0, 5),
+                experiences: experiences,
+                companiesCount: companies.length,
+                locationsCount: locations.length,
+                experiencesCount: experiences.length
+            });
 
-            // Log the filter data for debugging
-            console.log('Filter data populated:', {
-                companies: companies.length,
-                locations: locations.length,
-                experiences: experiences.length,
-                categories: categories.length,
-                workTypes: workTypes.length
+            // Populate all dropdowns
+            const companyResult = populateSelect('companyFilter', companies);
+            const locationResult = populateSelect('locationFilter', locations);
+            const experienceResult = populateSelect('experienceFilter', experiences);
+
+            // Log the results
+            console.log('Filter population results:', {
+                company: companyResult,
+                location: locationResult,
+                experience: experienceResult
             });
         }
 
@@ -2518,7 +2540,7 @@
             const select = document.getElementById(selectId);
             if (!select) {
                 console.error(`Select element not found: ${selectId}`);
-                return;
+                return { success: false, error: 'Element not found' };
             }
 
             // Clear existing options except the first (default) option
@@ -2527,31 +2549,22 @@
             }
 
             // Add new options
+            let addedCount = 0;
             options.forEach(option => {
                 if (option && option.trim().length > 0) {
                     const optionElement = document.createElement('option');
                     optionElement.value = option;
                     optionElement.textContent = option;
                     select.appendChild(optionElement);
+                    addedCount++;
                 }
             });
 
-            console.log(`Populated ${selectId} with ${options.length} options`);
+            console.log(`Populated ${selectId} with ${addedCount} options out of ${options.length} provided`);
+            return { success: true, count: addedCount };
         }
 
-        function setupEventListeners() {
-            // Filter event listeners
-            ['companyFilter', 'locationFilter', 'experienceFilter', 'salaryFilter'].forEach(filterId => {
-                document.getElementById(filterId).addEventListener('change', applyFilters);
-            });
-
-            document.getElementById('searchInput').addEventListener('input', applyFilters);
-            document.getElementById('refreshJobs').addEventListener('click', refreshJobs);
-
-            // Pagination
-            document.getElementById('prevPage').addEventListener('click', () => changePage(-1));
-            document.getElementById('nextPage').addEventListener('click', () => changePage(1));
-        }
+        // Removed duplicate setupEventListeners - using setupFilterListeners instead
 
         function applyFilters() {
             const companyFilter = document.getElementById('companyFilter').value;
