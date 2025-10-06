@@ -1,0 +1,13 @@
+{
+  "name": "navada-ai-jobs",
+  "version": "1.0.0",
+  "description": "AI Jobs Intelligence Platform",
+  "main": "start_server.py",
+  "scripts": {
+    "start": "python start_server.py",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": ["ai", "jobs", "dashboard", "analytics"],
+  "author": "NAVADA Team",
+  "license": "MIT"
+}

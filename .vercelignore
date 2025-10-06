@@ -1,0 +1,41 @@
+# Development files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.venv/
+venv/
+env/
+
+# Local development files
+start_navada.bat
+launch_navada.py
+enhanced_navada_launcher.py
+
+# Log files
+*.log
+adzuna_fetch_log.txt
+
+# Environment files (keep .env for production secrets)
+# .env
+
+# Development scripts
+setup_navada_environment.py
+enhanced_adzuna_fetcher.py
+enhanced_dashboard.py
+fixed_enhanced_analytics.py
+company_sentiment_analyzer.py
+real_time_data_fetcher.py
+
+# Documentation
+PROJECT_SUMMARY.md
+FIXED_ISSUES.md
+
+# Generated charts (will be served statically)
+# *.png
+
+# Development data files
+company_sentiment_analysis.csv
+adzuna_categories.csv
