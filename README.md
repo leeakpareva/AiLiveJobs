@@ -56,7 +56,36 @@ A comprehensive UK AI job market intelligence platform with real-time job listin
 
 ## 📊 16 Total Charts
 - 8 Standard Analytics
-- 4 Enhanced Analytics  
+- 4 Enhanced Analytics
 - 4 Sentiment Analysis Charts
+
+## 📋 Data Fetch Logging
+
+NAVADA includes comprehensive logging for Adzuna API data fetching:
+
+- **Log File**: `adzuna_fetch_log.txt` - Automatically created in project directory
+- **What's Logged**:
+  - Fetch start/completion times
+  - Number of jobs retrieved
+  - API response times
+  - Error handling and diagnostics
+  - Data processing statistics
+
+**Sample Log Entry**:
+```
+2025-10-06 04:33:09,016 - INFO - REAL-TIME UK AI JOB DATA FETCHER - STARTED
+2025-10-06 04:33:09,017 - INFO - Initializing Adzuna API fetcher...
+2025-10-06 04:33:09,018 - INFO - Starting job data fetch from Adzuna API...
+2025-10-06 04:33:15,234 - INFO - Successfully fetched 185 live UK AI jobs in 6.22 seconds
+2025-10-06 04:33:15,456 - INFO - Data saved to live_uk_ai_jobs.csv
+2025-10-06 04:33:15,457 - INFO - REAL-TIME DATA FETCH COMPLETED SUCCESSFULLY
+2025-10-06 04:33:15,457 - INFO - Total execution time: 6.22 seconds
+```
+
+This logging helps track:
+- ⏱️ **Schedule Performance**: Monitor fetch times and success rates
+- 📈 **Data Volume**: Track job market growth and API response sizes
+- 🔍 **Debugging**: Identify API issues or network problems
+- 📊 **Analytics**: Historical data about fetch operations
 
 Built with ❤️ for the UK AI job market community

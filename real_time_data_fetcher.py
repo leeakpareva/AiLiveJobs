@@ -13,9 +13,21 @@ from dotenv import load_dotenv
 import time
 import json
 import re
+import logging
 
 # Load environment variables
 load_dotenv()
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('adzuna_fetch_log.txt'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
 
 class AdzunaJobFetcher:
     def __init__(self):
@@ -302,19 +314,25 @@ class AdzunaJobFetcher:
 
 def main():
     """Test the real-time data fetcher"""
-    print("="*60)
-    print("REAL-TIME UK AI JOB DATA FETCHER")
-    print("="*60)
+    logger.info("="*60)
+    logger.info("REAL-TIME UK AI JOB DATA FETCHER - STARTED")
+    logger.info("="*60)
 
     try:
         # Initialize fetcher
+        logger.info("Initializing Adzuna API fetcher...")
         fetcher = AdzunaJobFetcher()
 
         # Fetch live data
+        logger.info("Starting job data fetch from Adzuna API...")
+        start_time = datetime.now()
         df = fetcher.fetch_ai_jobs(max_results=200)
+        end_time = datetime.now()
+        fetch_duration = (end_time - start_time).total_seconds()
 
         if len(df) > 0:
             # Display summary
+            logger.info(f"Successfully fetched {len(df)} live UK AI jobs in {fetch_duration:.2f} seconds")
             print(f"\n[SUMMARY] Fetched {len(df)} live UK AI jobs")
             print(f"Companies: {df['company'].nunique()}")
             print(f"Locations: {df['location'].nunique()}")
@@ -323,15 +341,23 @@ def main():
 
             # Save data
             filename = fetcher.save_data(df)
+            logger.info(f"Data saved to {filename}")
 
             print(f"\n[SUCCESS] Real-time data ready for dashboard!")
             print(f"[FILE] {filename}")
 
+            logger.info("REAL-TIME DATA FETCH COMPLETED SUCCESSFULLY")
+            logger.info(f"Total execution time: {fetch_duration:.2f} seconds")
+
         else:
+            logger.warning("No jobs fetched - check API credentials or network")
             print("[WARN] No jobs fetched - check API credentials or network")
 
     except Exception as e:
+        logger.error(f"Data fetch failed: {e}")
         print(f"[ERROR] {e}")
+
+    logger.info("="*60)
 
 
 if __name__ == "__main__":
