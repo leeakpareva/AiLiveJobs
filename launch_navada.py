@@ -7,7 +7,25 @@ One-click launch for AI Live Jobs Intelligence Platform
 import os
 import sys
 import subprocess
+import webbrowser
+import time
+import threading
+import http.server
+import socketserver
 from datetime import datetime
+
+def start_server(port=8000):
+    """Start HTTP server in background"""
+    Handler = http.server.SimpleHTTPRequestHandler
+    Handler.extensions_map.update({
+        '.csv': 'text/csv',
+        '.html': 'text/html',
+        '.png': 'image/png',
+    })
+
+    with socketserver.TCPServer(("", port), Handler) as httpd:
+        print(f"Server running at http://localhost:{port}/")
+        httpd.serve_forever()
 
 def main():
     """Quick launch NAVADA from AiLiveJobs folder"""
@@ -45,23 +63,40 @@ def main():
         print("   OPENAI_API_KEY=your_openai_key")
         return False
 
-    # Launch NAVADA
-    print("\nLaunching NAVADA...")
+    # Update data first
+    print("\nUpdating live data...")
     try:
-        subprocess.run([sys.executable, 'enhanced_navada_launcher.py'], check=True)
-        print("\nNAVADA launched successfully!")
+        subprocess.run([sys.executable, 'real_time_data_fetcher.py'],
+                      capture_output=True, timeout=30)
+        print("Live data updated")
+    except:
+        print("Using existing data")
+
+    # Start HTTP server in background thread
+    print("\nStarting local server...")
+    server_thread = threading.Thread(target=start_server, daemon=True)
+    server_thread.start()
+
+    # Wait for server to start
+    time.sleep(2)
+
+    # Open browser
+    print("Opening dashboard in browser...")
+    webbrowser.open('http://localhost:8000/navada_dashboard.html')
+
+    print("\n" + "="*70)
+    print("NAVADA is running!")
+    print("Dashboard: http://localhost:8000/navada_dashboard.html")
+    print("Press Ctrl+C to stop the server")
+    print("="*70)
+
+    # Keep running
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\n\nShutting down server...")
         return True
-    except subprocess.CalledProcessError as e:
-        print(f"\nFailed to launch NAVADA: {e}")
-        print("\nTroubleshooting:")
-        print("   1. Check API credentials in .env file")
-        print("   2. Ensure internet connection for live data")
-        print("   3. Install dependencies: pip install -r requirements.txt")
-        return False
-    except FileNotFoundError:
-        print("\nPython not found in PATH")
-        print("   Please ensure Python is properly installed")
-        return False
 
 if __name__ == "__main__":
     try:
