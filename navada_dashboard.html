@@ -641,6 +641,381 @@
             background-clip: text;
         }
 
+        /* Home Page Styles */
+        .home-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 10000;
+            overflow: hidden;
+        }
+
+        .home-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1a1a2e 100%);
+        }
+
+        .gradient-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(100, 181, 246, 0.3) 0%, transparent 70%);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(129, 199, 132, 0.2) 0%, transparent 70%);
+            top: 50%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(100, 181, 246, 0.4) 0%, transparent 70%);
+            bottom: 20%;
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 50px;
+        }
+
+        .logo-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+
+        .brand-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #64b5f6 0%, #81c784 50%, #64b5f6 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            margin: 0;
+            position: relative;
+            transition: all 0.6s ease;
+            cursor: pointer;
+        }
+
+        /* Dissolve Motion Effect on Hover */
+        .brand-title:hover {
+            animation: dissolve 0.8s ease-in-out;
+            background-position: 100% 100%;
+            transform: scale(1.05);
+            text-shadow: 0 0 30px rgba(100, 181, 246, 0.8);
+        }
+
+        @keyframes dissolve {
+            0% {
+                opacity: 1;
+                filter: blur(0px);
+                transform: scale(1);
+            }
+            25% {
+                opacity: 0.7;
+                filter: blur(2px);
+                transform: scale(0.98);
+            }
+            50% {
+                opacity: 0.3;
+                filter: blur(4px);
+                transform: scale(0.95);
+                letter-spacing: 8px;
+            }
+            75% {
+                opacity: 0.6;
+                filter: blur(2px);
+                transform: scale(1.02);
+                letter-spacing: 6px;
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0px);
+                transform: scale(1.05);
+                letter-spacing: 3px;
+            }
+        }
+
+        .brand-subtitle {
+            font-size: 1.2rem;
+            color: #81c784;
+            font-weight: 500;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .brand-tagline {
+            font-size: 1.8rem;
+            color: #64b5f6;
+            font-weight: 600;
+            font-style: italic;
+            margin: 20px 0;
+            opacity: 0.9;
+        }
+
+        .brand-description {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            max-width: 600px;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .access-container {
+            margin-bottom: 50px;
+        }
+
+        .access-card {
+            background: rgba(40, 40, 70, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .access-title {
+            color: #64b5f6;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.6),
+                         0 0 40px rgba(100, 181, 246, 0.4),
+                         0 0 60px rgba(100, 181, 246, 0.2);
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-pulse {
+            from {
+                text-shadow: 0 0 20px rgba(100, 181, 246, 0.6),
+                             0 0 40px rgba(100, 181, 246, 0.4),
+                             0 0 60px rgba(100, 181, 246, 0.2);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(100, 181, 246, 0.8),
+                             0 0 60px rgba(100, 181, 246, 0.6),
+                             0 0 90px rgba(100, 181, 246, 0.4);
+            }
+        }
+
+        .access-subtitle {
+            color: #b0b0b0;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .passkey-input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .passkey-field {
+            flex: 1;
+            padding: 15px 20px;
+            background: rgba(60, 60, 90, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .passkey-field:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+            transform: scale(1.02);
+        }
+
+        .access-button {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #64b5f6 0%, #81c784 100%);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .access-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(100, 181, 246, 0.4);
+        }
+
+        .access-error {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .access-error.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .home-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .feature-preview {
+            background: rgba(40, 40, 70, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-preview:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 181, 246, 0.3);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #64b5f6 0%, #81c784 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+
+        .feature-preview h4 {
+            color: #64b5f6;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-preview p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Responsive Design for Home Page */
+        @media (max-width: 768px) {
+            .brand-title {
+                font-size: 3rem;
+                letter-spacing: 2px;
+            }
+
+
+            .brand-tagline {
+                font-size: 1.4rem;
+            }
+
+            .access-title {
+                font-size: 1.2rem;
+                text-shadow: 0 0 15px rgba(100, 181, 246, 0.7),
+                             0 0 30px rgba(100, 181, 246, 0.5);
+            }
+
+            .access-card {
+                padding: 30px 20px;
+                margin: 0 10px;
+            }
+
+            .home-features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .passkey-input-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .access-button {
+                width: 100%;
+                height: 50px;
+            }
+        }
+
         /* Side Panel */
         .side-panel {
             position: fixed;
@@ -2014,7 +2389,73 @@
     </style>
 </head>
 <body>
-    <div class="app-container">
+    <!-- Home Page with Passkey Access -->
+    <div class="home-page" id="homePage">
+        <div class="home-background">
+            <div class="gradient-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+        </div>
+
+        <div class="home-content">
+            <div class="logo-container">
+                <div class="logo-main">
+                    <h1 class="brand-title" id="brandTitle">InsightLab</h1>
+                    <p class="brand-subtitle">powered by NAVADA</p>
+                </div>
+                <p class="brand-tagline">"Where jobs meet intelligence."</p>
+            </div>
+
+            <div class="access-container">
+                <div class="access-card">
+                    <h3 class="access-title">
+                        <i class="fas fa-lock"></i>
+                        Secure Access
+                    </h3>
+                    <p class="access-subtitle">Enter access code to continue</p>
+                    <div class="passkey-input-group">
+                        <input type="password" id="passkeyInput" class="passkey-field" placeholder="Enter 5-digit code" maxlength="5">
+                        <button onclick="checkPasskey()" class="access-button">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="access-error" id="errorMessage">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Invalid access code. Please try again.
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-features">
+                <div class="feature-preview">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Advanced Analytics</h4>
+                    <p>Real-time job market intelligence with 185+ live AI positions</p>
+                </div>
+                <div class="feature-preview">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>AI-Powered Insights</h4>
+                    <p>Skills demand analysis and career progression guidance</p>
+                </div>
+                <div class="feature-preview">
+                    <div class="feature-icon">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <h4>Market Opportunities</h4>
+                    <p>Salary arbitrage mapping and competitive intelligence</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden Initially) -->
+    <div class="app-container" id="mainApp" style="display: none;">
         <!-- Header -->
         <header class="header" id="header">
             <div class="logo">
@@ -2819,6 +3260,69 @@
         let messageId = 0;
         let sidePanelOpen = false;
         let currentPanel = 'jobs';
+
+        // Passkey access system
+        function checkPasskey() {
+            const passkey = document.getElementById('passkeyInput').value;
+            const homePage = document.getElementById('homePage');
+            const mainApp = document.getElementById('mainApp');
+            const errorMsg = document.getElementById('errorMessage');
+
+            if (passkey === '54321') {
+                // Successful access - transition to main app
+                homePage.style.opacity = '0';
+                homePage.style.transform = 'scale(0.95)';
+
+                setTimeout(() => {
+                    homePage.style.display = 'none';
+                    mainApp.style.display = 'block';
+                    mainApp.style.opacity = '0';
+
+                    // Fade in main app
+                    setTimeout(() => {
+                        mainApp.style.opacity = '1';
+                    }, 50);
+                }, 500);
+
+                // Store access for session
+                sessionStorage.setItem('insightlab_access', 'granted');
+            } else {
+                // Show error message
+                errorMsg.style.display = 'block';
+                errorMsg.style.opacity = '1';
+                document.getElementById('passkeyInput').style.borderColor = '#ff6b6b';
+
+                // Clear error after 3 seconds
+                setTimeout(() => {
+                    errorMsg.style.opacity = '0';
+                    setTimeout(() => {
+                        errorMsg.style.display = 'none';
+                        document.getElementById('passkeyInput').style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    }, 300);
+                }, 3000);
+
+                // Clear input
+                document.getElementById('passkeyInput').value = '';
+            }
+        }
+
+        // Handle Enter key on passkey input
+        document.addEventListener('DOMContentLoaded', function() {
+            const passkeyInput = document.getElementById('passkeyInput');
+            if (passkeyInput) {
+                passkeyInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkPasskey();
+                    }
+                });
+            }
+
+            // Check if user already has access this session
+            if (sessionStorage.getItem('insightlab_access') === 'granted') {
+                document.getElementById('homePage').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+            }
+        });
 
         // Auto-resize textarea
         const chatInput = document.getElementById('chatInput');
