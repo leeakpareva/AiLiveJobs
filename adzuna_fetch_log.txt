@@ -8,3 +8,13 @@
 2025-10-06 04:47:47,185 - INFO - REAL-TIME DATA FETCH COMPLETED SUCCESSFULLY
 2025-10-06 04:47:47,185 - INFO - Total execution time: 9.65 seconds
 2025-10-06 04:47:47,185 - INFO - ============================================================
+2025-10-06 07:23:05,293 - INFO - ============================================================
+2025-10-06 07:23:05,294 - INFO - REAL-TIME UK AI JOB DATA FETCHER - STARTED
+2025-10-06 07:23:05,294 - INFO - ============================================================
+2025-10-06 07:23:05,294 - INFO - Initializing Adzuna API fetcher...
+2025-10-06 07:23:05,294 - INFO - Starting job data fetch from Adzuna API...
+2025-10-06 07:23:14,175 - INFO - Successfully fetched 184 live UK AI jobs in 8.88 seconds
+2025-10-06 07:23:14,185 - INFO - Data saved to live_uk_ai_jobs.csv
+2025-10-06 07:23:14,186 - INFO - REAL-TIME DATA FETCH COMPLETED SUCCESSFULLY
+2025-10-06 07:23:14,186 - INFO - Total execution time: 8.88 seconds
+2025-10-06 07:23:14,186 - INFO - ============================================================
