@@ -1,6 +1,9 @@
-# NAVADA - AI Jobs Intelligence Platform
+# InsightLab powered by NAVADA
+## AI Jobs Intelligence Platform
 
-A comprehensive UK AI job market intelligence platform with real-time job listings, advanced analytics, sentiment analysis, and AI-powered insights.
+> *"Where jobs meet intelligence."*
+
+Your comprehensive hub for insights into careers, salaries, and industry data. A next-generation UK AI job market intelligence platform with real-time job listings, advanced analytics, sentiment analysis, and AI-powered insights.
 
 ## 🚀 Features
 
@@ -25,7 +28,7 @@ A comprehensive UK AI job market intelligence platform with real-time job listin
 - **Engagement Scores**: Company culture and employee engagement metrics
 - **Distribution Analysis**: Market-wide sentiment patterns
 
-### 🤖 AI Assistant (Leslie)
+### 🤖 InsightLab AI Assistant
 - **Intelligent Chat**: AI-powered job market insights and career guidance
 - **Real-time Analysis**: Instant answers about salary trends, companies, and skills
 - **Market Intelligence**: Deep insights from live job data
@@ -52,9 +55,9 @@ A comprehensive UK AI job market intelligence platform with real-time job listin
 ## 🚀 Quick Start
 
 ### 🌐 Live Demo (Recommended)
-**Access the live platform instantly:**
+**Access InsightLab instantly:**
 - **Production URL**: https://navada-ai-jobs-e24gil3pw-leeakparevas-projects.vercel.app
-- **Features**: Full dashboard, job listings, analytics, and AI assistant
+- **Features**: Full dashboard, job listings, analytics, and InsightLab AI assistant
 - **No setup required**: Ready to use immediately
 
 ### 💻 Local Development
@@ -109,4 +112,8 @@ This logging helps track:
 - 🔍 **Debugging**: Identify API issues or network problems
 - 📊 **Analytics**: Historical data about fetch operations
 
-Built with ❤️ for the UK AI job market community
+---
+
+**InsightLab powered by NAVADA** - Built with ❤️ for the UK AI job market community
+
+*"Where jobs meet intelligence."*
