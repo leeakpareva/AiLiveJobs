@@ -599,103 +599,46 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        .new-badge-menu {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
-            font-size: 0.6em;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-            z-index: 10;
+
+        /* Dashboard Sections in Main Content */
+        .dashboard-section {
+            margin: 50px 0;
+            padding: 0 20px;
         }
 
-        .burger-menu {
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #64b5f6;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+            justify-content: center;
+            padding: 20px 0;
+            border-bottom: 2px solid rgba(100, 181, 246, 0.3);
             position: relative;
         }
 
-        /* Dashboard Notification */
-        .dashboard-notification {
-            position: fixed;
-            top: 100px;
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
             left: 50%;
             transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
             background: linear-gradient(135deg, #64b5f6 0%, #81c784 100%);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 25px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
-            animation: slideInDown 0.6s ease-out;
-            max-width: 90%;
-            text-align: center;
+            border-radius: 2px;
         }
 
-        .dashboard-notification.hidden {
-            animation: slideOutUp 0.6s ease-out;
-            pointer-events: none;
-        }
-
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .notification-content i {
-            font-size: 1.2em;
-            animation: sparkle 1.5s infinite;
-        }
-
-        .notification-close {
-            background: rgba(255, 255, 255, 0.3);
-            border: none;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            margin-left: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .notification-close:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        @keyframes slideOutUp {
-            from {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-30px);
-            }
-        }
-
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(180deg); }
+        .section-title i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #64b5f6 0%, #81c784 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* Side Panel */
@@ -2084,11 +2027,10 @@
                     <i class="fas fa-info-circle"></i> About
                 </button>
                 <div class="live-indicator">🔴 LIVE</div>
-                <div class="burger-menu" onclick="toggleSidePanel()" title="Access 4 New Dashboards!">
+                <div class="burger-menu" onclick="toggleSidePanel()">
                     <div class="burger-line"></div>
                     <div class="burger-line"></div>
                     <div class="burger-line"></div>
-                    <div class="new-badge-menu">NEW</div>
                 </div>
             </div>
         </header>
@@ -2106,22 +2048,6 @@
                 <button class="nav-item active" onclick="showPanel('jobs', event)">
                     <i class="fas fa-briefcase"></i>
                     <span>Live UK AI Jobs</span>
-                </button>
-                <button class="nav-item" onclick="showPanel('skills', event)">
-                    <i class="fas fa-brain"></i>
-                    <span>Skills Intelligence</span>
-                </button>
-                <button class="nav-item" onclick="showPanel('career', event)">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Career Progression</span>
-                </button>
-                <button class="nav-item" onclick="showPanel('opportunities', event)">
-                    <i class="fas fa-target"></i>
-                    <span>Market Opportunities</span>
-                </button>
-                <button class="nav-item" onclick="showPanel('competitive', event)">
-                    <i class="fas fa-trophy"></i>
-                    <span>Competitive Intelligence</span>
                 </button>
                 <button class="nav-item" onclick="showPanel('chat', event)">
                     <i class="fas fa-robot"></i>
@@ -2276,394 +2202,9 @@
                     </div>
                 </div>
 
-                <!-- Skills Intelligence Dashboard -->
-                <div class="panel-section" id="skillsPanel">
-                    <div style="padding: 20px;">
-                        <h3 style="color: #64b5f6; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-brain"></i>
-                            Skills Intelligence Dashboard
-                        </h3>
-
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-fire"></i> Skills Demand Heatmap</h4>
-                                <div id="skillsHeatmap" class="chart-container">
-                                    <div class="skills-grid">
-                                        <div class="skill-item high-demand">
-                                            <span class="skill-name">Python</span>
-                                            <span class="skill-demand">85%</span>
-                                        </div>
-                                        <div class="skill-item high-demand">
-                                            <span class="skill-name">Machine Learning</span>
-                                            <span class="skill-demand">78%</span>
-                                        </div>
-                                        <div class="skill-item medium-demand">
-                                            <span class="skill-name">AWS</span>
-                                            <span class="skill-demand">65%</span>
-                                        </div>
-                                        <div class="skill-item medium-demand">
-                                            <span class="skill-name">TensorFlow</span>
-                                            <span class="skill-demand">58%</span>
-                                        </div>
-                                        <div class="skill-item medium-demand">
-                                            <span class="skill-name">PyTorch</span>
-                                            <span class="skill-demand">52%</span>
-                                        </div>
-                                        <div class="skill-item low-demand">
-                                            <span class="skill-name">Docker</span>
-                                            <span class="skill-demand">35%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-rocket"></i> Emerging Technologies</h4>
-                                <div class="emerging-tech-list">
-                                    <div class="tech-trend">
-                                        <span class="tech-name">Large Language Models</span>
-                                        <span class="growth-indicator">↑ 340%</span>
-                                    </div>
-                                    <div class="tech-trend">
-                                        <span class="tech-name">Vector Databases</span>
-                                        <span class="growth-indicator">↑ 185%</span>
-                                    </div>
-                                    <div class="tech-trend">
-                                        <span class="tech-name">MLOps</span>
-                                        <span class="growth-indicator">↑ 120%</span>
-                                    </div>
-                                    <div class="tech-trend">
-                                        <span class="tech-name">Edge AI</span>
-                                        <span class="growth-indicator">↑ 95%</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-graduation-cap"></i> Learning Path Recommendations</h4>
-                                <div class="learning-paths">
-                                    <div class="path-item">
-                                        <div class="path-title">Data Scientist → ML Engineer</div>
-                                        <div class="path-skills">Python → MLOps → Kubernetes → Cloud</div>
-                                        <div class="path-salary">+£15K average increase</div>
-                                    </div>
-                                    <div class="path-item">
-                                        <div class="path-title">Software Dev → AI Engineer</div>
-                                        <div class="path-skills">ML → TensorFlow → Deep Learning</div>
-                                        <div class="path-salary">+£22K average increase</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-certificate"></i> Certification ROI</h4>
-                                <div class="certification-list">
-                                    <div class="cert-item">
-                                        <span class="cert-name">AWS ML Specialty</span>
-                                        <span class="cert-roi">+£8K avg</span>
-                                    </div>
-                                    <div class="cert-item">
-                                        <span class="cert-name">Google ML Engineer</span>
-                                        <span class="cert-roi">+£6K avg</span>
-                                    </div>
-                                    <div class="cert-item">
-                                        <span class="cert-name">Azure AI Engineer</span>
-                                        <span class="cert-roi">+£7K avg</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Career Progression Analytics Dashboard -->
-                <div class="panel-section" id="careerPanel">
-                    <div style="padding: 20px;">
-                        <h3 style="color: #64b5f6; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-chart-line"></i>
-                            Career Progression Analytics
-                        </h3>
-
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card full-width">
-                                <h4><i class="fas fa-route"></i> Experience Level Pipeline</h4>
-                                <div class="progression-pipeline">
-                                    <div class="pipeline-stage">
-                                        <div class="stage-circle">Entry</div>
-                                        <div class="stage-info">
-                                            <div class="stage-count">5 jobs</div>
-                                            <div class="stage-salary">£32K avg</div>
-                                        </div>
-                                    </div>
-                                    <div class="pipeline-arrow">→</div>
-                                    <div class="pipeline-stage">
-                                        <div class="stage-circle">Mid</div>
-                                        <div class="stage-info">
-                                            <div class="stage-count">77 jobs</div>
-                                            <div class="stage-salary">£49K avg</div>
-                                        </div>
-                                    </div>
-                                    <div class="pipeline-arrow">→</div>
-                                    <div class="pipeline-stage">
-                                        <div class="stage-circle">Senior</div>
-                                        <div class="stage-info">
-                                            <div class="stage-count">12 jobs</div>
-                                            <div class="stage-salary">£65K avg</div>
-                                        </div>
-                                    </div>
-                                    <div class="pipeline-arrow">→</div>
-                                    <div class="pipeline-stage">
-                                        <div class="stage-circle">Lead</div>
-                                        <div class="stage-info">
-                                            <div class="stage-count">74 jobs</div>
-                                            <div class="stage-salary">£47K avg</div>
-                                        </div>
-                                    </div>
-                                    <div class="pipeline-arrow">→</div>
-                                    <div class="pipeline-stage">
-                                        <div class="stage-circle">Principal</div>
-                                        <div class="stage-info">
-                                            <div class="stage-count">17 jobs</div>
-                                            <div class="stage-salary">£62K avg</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-clock"></i> Time-to-Promotion</h4>
-                                <div class="promotion-timeline">
-                                    <div class="timeline-item">
-                                        <span class="transition">Entry → Mid</span>
-                                        <span class="duration">18 months</span>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <span class="transition">Mid → Senior</span>
-                                        <span class="duration">2.5 years</span>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <span class="transition">Senior → Lead</span>
-                                        <span class="duration">3+ years</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-trending-up"></i> Salary Growth Trajectories</h4>
-                                <div class="growth-chart">
-                                    <div class="growth-line">
-                                        <div class="year">Year 1: £35K</div>
-                                        <div class="year">Year 3: £50K</div>
-                                        <div class="year">Year 6: £70K</div>
-                                        <div class="year">Year 10: £95K</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Market Opportunity Finder Dashboard -->
-                <div class="panel-section" id="opportunitiesPanel">
-                    <div style="padding: 20px;">
-                        <h3 style="color: #64b5f6; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-target"></i>
-                            Market Opportunity Finder
-                        </h3>
-
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-map-marked-alt"></i> Underserved Markets</h4>
-                                <div class="opportunity-list">
-                                    <div class="opportunity-item high-opportunity">
-                                        <div class="location-name">Bristol</div>
-                                        <div class="opportunity-score">High Opportunity</div>
-                                        <div class="opportunity-reason">5 jobs, growing demand</div>
-                                    </div>
-                                    <div class="opportunity-item medium-opportunity">
-                                        <div class="location-name">Cardiff</div>
-                                        <div class="opportunity-score">Medium Opportunity</div>
-                                        <div class="opportunity-reason">6 jobs, stable market</div>
-                                    </div>
-                                    <div class="opportunity-item low-opportunity">
-                                        <div class="location-name">Leeds</div>
-                                        <div class="opportunity-score">Emerging Market</div>
-                                        <div class="opportunity-reason">4 jobs, early stage</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-balance-scale"></i> Salary Arbitrage Map</h4>
-                                <div class="arbitrage-list">
-                                    <div class="arbitrage-item best">
-                                        <div class="city-name">Manchester</div>
-                                        <div class="arbitrage-score">Best Value</div>
-                                        <div class="cost-ratio">Salary: £45K | CoL: 0.75x London</div>
-                                    </div>
-                                    <div class="arbitrage-item good">
-                                        <div class="city-name">Edinburgh</div>
-                                        <div class="arbitrage-score">Good Value</div>
-                                        <div class="cost-ratio">Salary: £48K | CoL: 0.85x London</div>
-                                    </div>
-                                    <div class="arbitrage-item fair">
-                                        <div class="city-name">London</div>
-                                        <div class="arbitrage-score">Premium Market</div>
-                                        <div class="cost-ratio">Salary: £55K | CoL: 1.0x</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-chart-bar"></i> Company Growth Indicators</h4>
-                                <div class="growth-companies">
-                                    <div class="company-growth">
-                                        <div class="company-name">poolside</div>
-                                        <div class="growth-metric">13 jobs - Rapid Hiring</div>
-                                        <div class="growth-trend">↗️ +65% this month</div>
-                                    </div>
-                                    <div class="company-growth">
-                                        <div class="company-name">CBRE</div>
-                                        <div class="growth-metric">10 jobs - Steady Growth</div>
-                                        <div class="growth-trend">↗️ +25% this month</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-home"></i> Remote Work Premium</h4>
-                                <div class="remote-analysis">
-                                    <div class="work-type">
-                                        <span class="type-label">Hybrid (183 jobs)</span>
-                                        <span class="salary-range">£49K avg</span>
-                                    </div>
-                                    <div class="work-type">
-                                        <span class="type-label">Remote (2 jobs)</span>
-                                        <span class="salary-range">£55K avg</span>
-                                    </div>
-                                    <div class="premium-note">Remote premium: +12% average</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Competitive Intelligence Hub Dashboard -->
-                <div class="panel-section" id="competitivePanel">
-                    <div style="padding: 20px;">
-                        <h3 style="color: #64b5f6; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-trophy"></i>
-                            Competitive Intelligence Hub
-                        </h3>
-
-                        <div class="dashboard-grid">
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-search"></i> Company Benchmarking</h4>
-                                <div class="company-comparison">
-                                    <select id="companySelector" class="company-select">
-                                        <option>Select a company...</option>
-                                        <option>poolside</option>
-                                        <option>CBRE</option>
-                                        <option>NHS Scotland</option>
-                                        <option>JPMorganChase</option>
-                                    </select>
-                                    <div class="benchmark-results" id="benchmarkResults">
-                                        <div class="benchmark-metric">
-                                            <span class="metric-label">Jobs Posted</span>
-                                            <span class="metric-value">13</span>
-                                        </div>
-                                        <div class="benchmark-metric">
-                                            <span class="metric-label">Avg Salary</span>
-                                            <span class="metric-value">£52K</span>
-                                        </div>
-                                        <div class="benchmark-metric">
-                                            <span class="metric-label">Market Position</span>
-                                            <span class="metric-value">Top Employer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-tachometer-alt"></i> Hiring Velocity Tracker</h4>
-                                <div class="velocity-list">
-                                    <div class="velocity-item fast">
-                                        <div class="company-name">poolside</div>
-                                        <div class="velocity-score">Fast Hiring</div>
-                                        <div class="hire-rate">2.3 jobs/week</div>
-                                    </div>
-                                    <div class="velocity-item medium">
-                                        <div class="company-name">CBRE</div>
-                                        <div class="velocity-score">Steady Hiring</div>
-                                        <div class="hire-rate">1.7 jobs/week</div>
-                                    </div>
-                                    <div class="velocity-item slow">
-                                        <div class="company-name">NHS Scotland</div>
-                                        <div class="velocity-score">Slow Hiring</div>
-                                        <div class="hire-rate">1.0 jobs/week</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-gift"></i> Benefits Analysis</h4>
-                                <div class="benefits-trends">
-                                    <div class="benefit-trend">
-                                        <span class="benefit-name">Hybrid Work</span>
-                                        <span class="trend-percentage">99% of companies</span>
-                                    </div>
-                                    <div class="benefit-trend">
-                                        <span class="benefit-name">Learning Budget</span>
-                                        <span class="trend-percentage">78% of companies</span>
-                                    </div>
-                                    <div class="benefit-trend">
-                                        <span class="benefit-name">Stock Options</span>
-                                        <span class="trend-percentage">45% of companies</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="dashboard-card">
-                                <h4><i class="fas fa-heart"></i> Company Culture Metrics</h4>
-                                <div class="culture-metrics">
-                                    <div class="culture-item">
-                                        <div class="culture-aspect">Work-Life Balance</div>
-                                        <div class="culture-rating">
-                                            <span class="stars">★★★★☆</span>
-                                            <span class="rating-text">4.2/5</span>
-                                        </div>
-                                    </div>
-                                    <div class="culture-item">
-                                        <div class="culture-aspect">Growth Opportunities</div>
-                                        <div class="culture-rating">
-                                            <span class="stars">★★★★★</span>
-                                            <span class="rating-text">4.6/5</span>
-                                        </div>
-                                    </div>
-                                    <div class="culture-item">
-                                        <div class="culture-aspect">Tech Stack Modernity</div>
-                                        <div class="culture-rating">
-                                            <span class="stars">★★★★☆</span>
-                                            <span class="rating-text">4.1/5</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
-        <!-- Dashboard Notification -->
-        <div class="dashboard-notification" id="dashboardNotification">
-            <div class="notification-content">
-                <i class="fas fa-sparkles"></i>
-                <span>4 New Dashboards Added! Click the menu ☰ to explore Skills Intelligence, Career Progression, Market Opportunities & Competitive Intelligence</span>
-                <button onclick="closeDashboardNotification()" class="notification-close">×</button>
-            </div>
-        </div>
 
         <!-- Main Content -->
         <main class="main-content" id="mainContent">
@@ -2799,6 +2340,371 @@
                 </div>
 
             </div>
+
+            <!-- Skills Intelligence Dashboard Section -->
+            <section class="dashboard-section">
+                <h2 class="section-title">
+                    <i class="fas fa-brain"></i>
+                    Skills Intelligence Dashboard
+                </h2>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-fire"></i> Skills Demand Heatmap</h4>
+                        <div id="skillsHeatmap" class="chart-container">
+                            <div class="skills-grid">
+                                <div class="skill-item high-demand">
+                                    <span class="skill-name">Python</span>
+                                    <span class="skill-demand">85%</span>
+                                </div>
+                                <div class="skill-item high-demand">
+                                    <span class="skill-name">Machine Learning</span>
+                                    <span class="skill-demand">78%</span>
+                                </div>
+                                <div class="skill-item medium-demand">
+                                    <span class="skill-name">AWS</span>
+                                    <span class="skill-demand">65%</span>
+                                </div>
+                                <div class="skill-item medium-demand">
+                                    <span class="skill-name">TensorFlow</span>
+                                    <span class="skill-demand">58%</span>
+                                </div>
+                                <div class="skill-item medium-demand">
+                                    <span class="skill-name">PyTorch</span>
+                                    <span class="skill-demand">52%</span>
+                                </div>
+                                <div class="skill-item low-demand">
+                                    <span class="skill-name">Docker</span>
+                                    <span class="skill-demand">35%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-rocket"></i> Emerging Technologies</h4>
+                        <div class="emerging-tech-list">
+                            <div class="tech-trend">
+                                <span class="tech-name">Large Language Models</span>
+                                <span class="growth-indicator">↑ 340%</span>
+                            </div>
+                            <div class="tech-trend">
+                                <span class="tech-name">Vector Databases</span>
+                                <span class="growth-indicator">↑ 185%</span>
+                            </div>
+                            <div class="tech-trend">
+                                <span class="tech-name">MLOps</span>
+                                <span class="growth-indicator">↑ 120%</span>
+                            </div>
+                            <div class="tech-trend">
+                                <span class="tech-name">Edge AI</span>
+                                <span class="growth-indicator">↑ 95%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-graduation-cap"></i> Learning Path Recommendations</h4>
+                        <div class="learning-paths">
+                            <div class="path-item">
+                                <div class="path-title">Data Scientist → ML Engineer</div>
+                                <div class="path-skills">Python → MLOps → Kubernetes → Cloud</div>
+                                <div class="path-salary">+£15K average increase</div>
+                            </div>
+                            <div class="path-item">
+                                <div class="path-title">Software Dev → AI Engineer</div>
+                                <div class="path-skills">ML → TensorFlow → Deep Learning</div>
+                                <div class="path-salary">+£22K average increase</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-certificate"></i> Certification ROI</h4>
+                        <div class="certification-list">
+                            <div class="cert-item">
+                                <span class="cert-name">AWS ML Specialty</span>
+                                <span class="cert-roi">+£8K avg</span>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">Google ML Engineer</span>
+                                <span class="cert-roi">+£6K avg</span>
+                            </div>
+                            <div class="cert-item">
+                                <span class="cert-name">Azure AI Engineer</span>
+                                <span class="cert-roi">+£7K avg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Career Progression Analytics Dashboard Section -->
+            <section class="dashboard-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    Career Progression Analytics
+                </h2>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card full-width">
+                        <h4><i class="fas fa-route"></i> Experience Level Pipeline</h4>
+                        <div class="progression-pipeline">
+                            <div class="pipeline-stage">
+                                <div class="stage-circle">Entry</div>
+                                <div class="stage-info">
+                                    <div class="stage-count">5 jobs</div>
+                                    <div class="stage-salary">£32K avg</div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage">
+                                <div class="stage-circle">Mid</div>
+                                <div class="stage-info">
+                                    <div class="stage-count">77 jobs</div>
+                                    <div class="stage-salary">£49K avg</div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage">
+                                <div class="stage-circle">Senior</div>
+                                <div class="stage-info">
+                                    <div class="stage-count">12 jobs</div>
+                                    <div class="stage-salary">£65K avg</div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage">
+                                <div class="stage-circle">Lead</div>
+                                <div class="stage-info">
+                                    <div class="stage-count">74 jobs</div>
+                                    <div class="stage-salary">£47K avg</div>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-stage">
+                                <div class="stage-circle">Principal</div>
+                                <div class="stage-info">
+                                    <div class="stage-count">17 jobs</div>
+                                    <div class="stage-salary">£62K avg</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-clock"></i> Time-to-Promotion</h4>
+                        <div class="promotion-timeline">
+                            <div class="timeline-item">
+                                <span class="transition">Entry → Mid</span>
+                                <span class="duration">18 months</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="transition">Mid → Senior</span>
+                                <span class="duration">2.5 years</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="transition">Senior → Lead</span>
+                                <span class="duration">3+ years</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-trending-up"></i> Salary Growth Trajectories</h4>
+                        <div class="growth-chart">
+                            <div class="growth-line">
+                                <div class="year">Year 1: £35K</div>
+                                <div class="year">Year 3: £50K</div>
+                                <div class="year">Year 6: £70K</div>
+                                <div class="year">Year 10: £95K</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Market Opportunity Finder Dashboard Section -->
+            <section class="dashboard-section">
+                <h2 class="section-title">
+                    <i class="fas fa-target"></i>
+                    Market Opportunity Finder
+                </h2>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-map-marked-alt"></i> Underserved Markets</h4>
+                        <div class="opportunity-list">
+                            <div class="opportunity-item high-opportunity">
+                                <div class="location-name">Bristol</div>
+                                <div class="opportunity-score">High Opportunity</div>
+                                <div class="opportunity-reason">5 jobs, growing demand</div>
+                            </div>
+                            <div class="opportunity-item medium-opportunity">
+                                <div class="location-name">Cardiff</div>
+                                <div class="opportunity-score">Medium Opportunity</div>
+                                <div class="opportunity-reason">6 jobs, stable market</div>
+                            </div>
+                            <div class="opportunity-item low-opportunity">
+                                <div class="location-name">Leeds</div>
+                                <div class="opportunity-score">Emerging Market</div>
+                                <div class="opportunity-reason">4 jobs, early stage</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-balance-scale"></i> Salary Arbitrage Map</h4>
+                        <div class="arbitrage-list">
+                            <div class="arbitrage-item best">
+                                <div class="city-name">Manchester</div>
+                                <div class="arbitrage-score">Best Value</div>
+                                <div class="cost-ratio">Salary: £45K | CoL: 0.75x London</div>
+                            </div>
+                            <div class="arbitrage-item good">
+                                <div class="city-name">Edinburgh</div>
+                                <div class="arbitrage-score">Good Value</div>
+                                <div class="cost-ratio">Salary: £48K | CoL: 0.85x London</div>
+                            </div>
+                            <div class="arbitrage-item fair">
+                                <div class="city-name">London</div>
+                                <div class="arbitrage-score">Premium Market</div>
+                                <div class="cost-ratio">Salary: £55K | CoL: 1.0x</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-chart-bar"></i> Company Growth Indicators</h4>
+                        <div class="growth-companies">
+                            <div class="company-growth">
+                                <div class="company-name">poolside</div>
+                                <div class="growth-metric">13 jobs - Rapid Hiring</div>
+                                <div class="growth-trend">↗️ +65% this month</div>
+                            </div>
+                            <div class="company-growth">
+                                <div class="company-name">CBRE</div>
+                                <div class="growth-metric">10 jobs - Steady Growth</div>
+                                <div class="growth-trend">↗️ +25% this month</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-home"></i> Remote Work Premium</h4>
+                        <div class="remote-analysis">
+                            <div class="work-type">
+                                <span class="type-label">Hybrid (183 jobs)</span>
+                                <span class="salary-range">£49K avg</span>
+                            </div>
+                            <div class="work-type">
+                                <span class="type-label">Remote (2 jobs)</span>
+                                <span class="salary-range">£55K avg</span>
+                            </div>
+                            <div class="premium-note">Remote premium: +12% average</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Competitive Intelligence Hub Dashboard Section -->
+            <section class="dashboard-section">
+                <h2 class="section-title">
+                    <i class="fas fa-trophy"></i>
+                    Competitive Intelligence Hub
+                </h2>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-search"></i> Company Benchmarking</h4>
+                        <div class="company-comparison">
+                            <select id="companySelector" class="company-select">
+                                <option>Select a company...</option>
+                                <option>poolside</option>
+                                <option>CBRE</option>
+                                <option>NHS Scotland</option>
+                                <option>JPMorganChase</option>
+                            </select>
+                            <div class="benchmark-results" id="benchmarkResults">
+                                <div class="benchmark-metric">
+                                    <span class="metric-label">Jobs Posted</span>
+                                    <span class="metric-value">13</span>
+                                </div>
+                                <div class="benchmark-metric">
+                                    <span class="metric-label">Avg Salary</span>
+                                    <span class="metric-value">£52K</span>
+                                </div>
+                                <div class="benchmark-metric">
+                                    <span class="metric-label">Market Position</span>
+                                    <span class="metric-value">Top Employer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-tachometer-alt"></i> Hiring Velocity Tracker</h4>
+                        <div class="velocity-list">
+                            <div class="velocity-item fast">
+                                <div class="company-name">poolside</div>
+                                <div class="velocity-score">Fast Hiring</div>
+                                <div class="hire-rate">2.3 jobs/week</div>
+                            </div>
+                            <div class="velocity-item medium">
+                                <div class="company-name">CBRE</div>
+                                <div class="velocity-score">Steady Hiring</div>
+                                <div class="hire-rate">1.7 jobs/week</div>
+                            </div>
+                            <div class="velocity-item slow">
+                                <div class="company-name">NHS Scotland</div>
+                                <div class="velocity-score">Slow Hiring</div>
+                                <div class="hire-rate">1.0 jobs/week</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-gift"></i> Benefits Analysis</h4>
+                        <div class="benefits-trends">
+                            <div class="benefit-trend">
+                                <span class="benefit-name">Hybrid Work</span>
+                                <span class="trend-percentage">99% of companies</span>
+                            </div>
+                            <div class="benefit-trend">
+                                <span class="benefit-name">Learning Budget</span>
+                                <span class="trend-percentage">78% of companies</span>
+                            </div>
+                            <div class="benefit-trend">
+                                <span class="benefit-name">Stock Options</span>
+                                <span class="trend-percentage">45% of companies</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-heart"></i> Company Culture Metrics</h4>
+                        <div class="culture-metrics">
+                            <div class="culture-item">
+                                <div class="culture-aspect">Work-Life Balance</div>
+                                <div class="culture-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">4.2/5</span>
+                                </div>
+                            </div>
+                            <div class="culture-item">
+                                <div class="culture-aspect">Growth Opportunities</div>
+                                <div class="culture-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="rating-text">4.6/5</span>
+                                </div>
+                            </div>
+                            <div class="culture-item">
+                                <div class="culture-aspect">Tech Stack Modernity</div>
+                                <div class="culture-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">4.1/5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <!-- About Modal -->
@@ -2976,29 +2882,8 @@
             }
         }
 
-        // Close dashboard notification
-        function closeDashboardNotification() {
-            const notification = document.getElementById('dashboardNotification');
-            notification.classList.add('hidden');
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 600);
-        }
-
-        // Auto-hide notification after 8 seconds
-        function autoHideNotification() {
-            setTimeout(() => {
-                const notification = document.getElementById('dashboardNotification');
-                if (notification && !notification.classList.contains('hidden')) {
-                    closeDashboardNotification();
-                }
-            }, 8000);
-        }
-
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
-            // Show notification about new dashboards
-            autoHideNotification();
 
             // Check if API key exists
             if (apiKey) {
